@@ -3,5 +3,5 @@ from faker import Faker
 from flask_restx import Api
 
 db = SQLAlchemy()
-faker = Faker()
+fake = Faker()
 api = Api()
