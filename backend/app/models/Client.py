@@ -21,7 +21,7 @@ class Client(db.Model):
     date_of_birth = db.Column(db.DateTime(), nullable=False)
     nb_hours_code = db.Column(db.Integer, default=0)
     nb_hours_driving = db.Column(db.Integer, default=0)
-    # code_appointments = db.relationship(
-    #     'CodeAppointment', cascade='all, delete',  backref=db.backref('Client', lazy=True))
-    # driving_appointments = db.relationship(
-    #     'DrivingAppointment', cascade='all, delete',  backref=db.backref('Client', lazy=True))
+    code_appointments = db.relationship(
+        'CodeAppointment', cascade='all, delete',  backref=db.backref('Client', lazy=True))
+    driving_appointments = db.relationship(
+        'DrivingAppointment', cascade='all, delete',  backref=db.backref('Client', lazy=True))
