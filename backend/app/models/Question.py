@@ -8,5 +8,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(255))
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'), nullable=False)
-    responses = db.relationship(
-        'Response', cascade='all, delete',  backref=db.backref('Question', lazy=True))
+    responses = db.relationship('Response', backref='question', cascade='all, delete-orphan', lazy=True)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())

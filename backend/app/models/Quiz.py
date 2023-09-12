@@ -8,7 +8,7 @@ class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String, nullable=False)
     score = db.Column(db.Integer)
+    questions = db.relationship('Question', backref='quiz', cascade='all, delete-orphan', lazy=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
-    deleted_at = db.Column(db.DateTime, default=None, nullable=True)
