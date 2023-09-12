@@ -80,13 +80,16 @@ with app.app_context():
 
 # Generated Quiz data
 with app.app_context():
+    code_appointments = CodeAppointment.query.all()
     quiz_data = []
     for _ in range(10):
         uuid = fake.uuid4()
         score = fake.random_int(min=0,max=100)
+        code_appointment = random.choice(code_appointments)
         quiz_instance = Quiz(
              uuid=uuid,
-             score=score
+             score=score,
+             appointment_id= code_appointment.id
         )
         quiz_data.append(quiz_instance)
     db.session.add_all(quiz_data)
