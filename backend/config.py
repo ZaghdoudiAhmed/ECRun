@@ -1,16 +1,18 @@
 """Flask configuration."""
-import os
+from os import environ, path
+from dotenv import load_dotenv
 
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.env'))
 
 
-class Config(object):
+class Config:
     """Base config."""
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'ecole_conduite_run'
+    SECRET_KEY = environ.get('SECRET_KEY') or 'ecole_conduite_run'
 
     # Configuration Database
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')\
+    SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URI')\
         or 'postgresql://ECRun:!ChangeMe!@localhost:5432/ECRun'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
